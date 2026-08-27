@@ -2,7 +2,7 @@ import { ShieldCheck, IdCard, Radar, Gauge, LayoutGrid } from "lucide-react";
 import { security } from "@/config/site";
 import { Reveal } from "./Reveal";
 
-const icons = [IdCard, ShieldCheck, Radar, Gauge, LayoutGrid];
+const icons = [IdCard, ShieldCheck, Radar, Gauge, LayoutGrid] as const;
 
 export function Security() {
   return (
@@ -15,7 +15,7 @@ export function Security() {
 
         <div className="mt-16 grid gap-px border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
           {security.items.map((item, index) => {
-            const Icon = icons[index % icons.length];
+            const Icon = icons[index % icons.length]!;
             return (
               <Reveal key={item.title} delay={index * 70}>
                 <article className="group h-full bg-background p-8 transition-colors duration-500 hover:bg-surface">
