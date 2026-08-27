@@ -24,7 +24,7 @@ export function useSaveRow(table: TableName) {
   return useMutation({
     mutationFn: async ({ id, values }: { id?: string; values: Record<string, unknown> }) => {
       if (id) {
-        const { error } = await supabase.from(table).update(values).eq("id", id);
+        const { error } = await supabase.from(table).update(values as never).eq("id", id);
         if (error) throw error;
         return;
       }
