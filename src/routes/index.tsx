@@ -1,24 +1,50 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Header } from "@/components/landing/Header";
+import { Hero } from "@/components/landing/Hero";
+import { Services } from "@/components/landing/Services";
+import { Fleet } from "@/components/landing/Fleet";
+import { HowItWorks } from "@/components/landing/HowItWorks";
+import { Technology } from "@/components/landing/Technology";
+import { Security } from "@/components/landing/Security";
+import { FinalCta } from "@/components/landing/FinalCta";
+import { Footer } from "@/components/landing/Footer";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "OSER | Mobilidade executiva e transporte para eventos" },
+      {
+        name: "description",
+        content:
+          "Transporte executivo, traslados de aeroporto e eventos com motoristas profissionais, frota premium e acompanhamento em tempo real.",
+      },
+      { property: "og:title", content: "OSER | Mobilidade executiva no seu ritmo" },
+      {
+        property: "og:description",
+        content:
+          "Transporte executivo, eventos e deslocamentos com conforto, segurança e gestão inteligente.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="bg-background">
+      <Header />
+      <main>
+        <Hero />
+        <Services />
+        <Fleet />
+        <HowItWorks />
+        <Technology />
+        <Security />
+        <FinalCta />
+      </main>
+      <Footer />
     </div>
   );
 }
