@@ -14,7 +14,211 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      clientes: {
+        Row: {
+          created_at: string
+          email: string | null
+          empresa: string | null
+          id: string
+          nome: string
+          observacoes: string | null
+          telefone: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          empresa?: string | null
+          id?: string
+          nome: string
+          observacoes?: string | null
+          telefone?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          empresa?: string | null
+          id?: string
+          nome?: string
+          observacoes?: string | null
+          telefone?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      motoristas: {
+        Row: {
+          cnh_categoria: string | null
+          cnh_validade: string | null
+          created_at: string
+          documento: string | null
+          id: string
+          nome: string
+          observacoes: string | null
+          status: string
+          telefone: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          cnh_categoria?: string | null
+          cnh_validade?: string | null
+          created_at?: string
+          documento?: string | null
+          id?: string
+          nome: string
+          observacoes?: string | null
+          status?: string
+          telefone?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          cnh_categoria?: string | null
+          cnh_validade?: string | null
+          created_at?: string
+          documento?: string | null
+          id?: string
+          nome?: string
+          observacoes?: string | null
+          status?: string
+          telefone?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      veiculos: {
+        Row: {
+          ano: number | null
+          categoria: string
+          cor: string | null
+          created_at: string
+          id: string
+          km_atual: number
+          modelo: string
+          observacoes: string | null
+          placa: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          ano?: number | null
+          categoria?: string
+          cor?: string | null
+          created_at?: string
+          id?: string
+          km_atual?: number
+          modelo: string
+          observacoes?: string | null
+          placa: string
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          ano?: number | null
+          categoria?: string
+          cor?: string | null
+          created_at?: string
+          id?: string
+          km_atual?: number
+          modelo?: string
+          observacoes?: string | null
+          placa?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      viagens: {
+        Row: {
+          cliente_id: string | null
+          created_at: string
+          destino: string | null
+          fim: string | null
+          id: string
+          inicio: string
+          km: number
+          motorista_id: string | null
+          observacoes: string | null
+          origem: string | null
+          status: string
+          tipo: string
+          titulo: string
+          updated_at: string
+          user_id: string
+          valor: number
+          veiculo_id: string | null
+        }
+        Insert: {
+          cliente_id?: string | null
+          created_at?: string
+          destino?: string | null
+          fim?: string | null
+          id?: string
+          inicio?: string
+          km?: number
+          motorista_id?: string | null
+          observacoes?: string | null
+          origem?: string | null
+          status?: string
+          tipo?: string
+          titulo: string
+          updated_at?: string
+          user_id: string
+          valor?: number
+          veiculo_id?: string | null
+        }
+        Update: {
+          cliente_id?: string | null
+          created_at?: string
+          destino?: string | null
+          fim?: string | null
+          id?: string
+          inicio?: string
+          km?: number
+          motorista_id?: string | null
+          observacoes?: string | null
+          origem?: string | null
+          status?: string
+          tipo?: string
+          titulo?: string
+          updated_at?: string
+          user_id?: string
+          valor?: number
+          veiculo_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "viagens_cliente_id_fkey"
+            columns: ["cliente_id"]
+            isOneToOne: false
+            referencedRelation: "clientes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "viagens_motorista_id_fkey"
+            columns: ["motorista_id"]
+            isOneToOne: false
+            referencedRelation: "motoristas"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "viagens_veiculo_id_fkey"
+            columns: ["veiculo_id"]
+            isOneToOne: false
+            referencedRelation: "veiculos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
