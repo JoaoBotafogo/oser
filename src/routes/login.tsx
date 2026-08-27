@@ -178,5 +178,8 @@ function translate(message: string) {
     "Password should be at least 6 characters":
       "A senha deve ter pelo menos 6 caracteres.",
   };
+  if (message.toLowerCase().includes("pwned") || message.toLowerCase().includes("compromised")) {
+    return "Esta senha aparece em vazamentos conhecidos. Escolha uma senha mais forte.";
+  }
   return map[message] ?? message;
 }
