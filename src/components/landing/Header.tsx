@@ -52,17 +52,19 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <a
-            href={brand.quoteUrl}
-            className="hidden text-xs tracking-[0.18em] uppercase text-muted-foreground transition-colors hover:text-foreground md:inline-flex"
-          >
-            Cotação
-          </a>
+          {!signedIn && (
+            <Link
+              to={brand.systemUrl}
+              className="hidden text-xs tracking-[0.18em] uppercase text-muted-foreground transition-colors hover:text-foreground md:inline-flex"
+            >
+              Cadastre-se
+            </Link>
+          )}
           <Link
-            to={brand.systemUrl}
+            to={signedIn ? "/painel" : brand.systemUrl}
             className="inline-flex items-center justify-center rounded-sm bg-primary px-5 py-2.5 text-xs tracking-[0.2em] uppercase text-primary-foreground transition-all duration-300 hover:shadow-[var(--shadow-gold)] hover:brightness-110"
           >
-            Entrar
+            {signedIn ? "Painel" : "Entrar"}
           </Link>
           <button
             type="button"
