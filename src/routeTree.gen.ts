@@ -18,6 +18,7 @@ import { Route as AuthenticatedFinanceiroRouteImport } from './routes/_authentic
 import { Route as AuthenticatedFrotaRouteImport } from './routes/_authenticated/frota'
 import { Route as AuthenticatedMotoristasRouteImport } from './routes/_authenticated/motoristas'
 import { Route as AuthenticatedPainelRouteImport } from './routes/_authenticated/painel'
+import { Route as AuthenticatedRelatoriosRouteImport } from './routes/_authenticated/relatorios'
 import { Route as AuthenticatedViagensRouteImport } from './routes/_authenticated/viagens'
 
 const IndexRoute = IndexRouteImport.update({
@@ -64,6 +65,11 @@ const AuthenticatedPainelRoute = AuthenticatedPainelRouteImport.update({
   path: '/painel',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedRelatoriosRoute = AuthenticatedRelatoriosRouteImport.update({
+  id: '/relatorios',
+  path: '/relatorios',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedViagensRoute = AuthenticatedViagensRouteImport.update({
   id: '/viagens',
   path: '/viagens',
@@ -79,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/frota': typeof AuthenticatedFrotaRoute
   '/motoristas': typeof AuthenticatedMotoristasRoute
   '/painel': typeof AuthenticatedPainelRoute
+  '/relatorios': typeof AuthenticatedRelatoriosRoute
   '/viagens': typeof AuthenticatedViagensRoute
 }
 export interface FileRoutesByTo {
@@ -90,6 +97,7 @@ export interface FileRoutesByTo {
   '/frota': typeof AuthenticatedFrotaRoute
   '/motoristas': typeof AuthenticatedMotoristasRoute
   '/painel': typeof AuthenticatedPainelRoute
+  '/relatorios': typeof AuthenticatedRelatoriosRoute
   '/viagens': typeof AuthenticatedViagensRoute
 }
 export interface FileRoutesById {
@@ -103,6 +111,7 @@ export interface FileRoutesById {
   '/_authenticated/frota': typeof AuthenticatedFrotaRoute
   '/_authenticated/motoristas': typeof AuthenticatedMotoristasRoute
   '/_authenticated/painel': typeof AuthenticatedPainelRoute
+  '/_authenticated/relatorios': typeof AuthenticatedRelatoriosRoute
   '/_authenticated/viagens': typeof AuthenticatedViagensRoute
 }
 export interface FileRouteTypes {
@@ -116,6 +125,7 @@ export interface FileRouteTypes {
     | '/frota'
     | '/motoristas'
     | '/painel'
+    | '/relatorios'
     | '/viagens'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -127,6 +137,7 @@ export interface FileRouteTypes {
     | '/frota'
     | '/motoristas'
     | '/painel'
+    | '/relatorios'
     | '/viagens'
   id:
     | '__root__'
@@ -139,6 +150,7 @@ export interface FileRouteTypes {
     | '/_authenticated/frota'
     | '/_authenticated/motoristas'
     | '/_authenticated/painel'
+    | '/_authenticated/relatorios'
     | '/_authenticated/viagens'
   fileRoutesById: FileRoutesById
 }
@@ -213,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPainelRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/relatorios': {
+      id: '/_authenticated/relatorios'
+      path: '/relatorios'
+      fullPath: '/relatorios'
+      preLoaderRoute: typeof AuthenticatedRelatoriosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/viagens': {
       id: '/_authenticated/viagens'
       path: '/viagens'
@@ -230,6 +249,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedFrotaRoute: typeof AuthenticatedFrotaRoute
   AuthenticatedMotoristasRoute: typeof AuthenticatedMotoristasRoute
   AuthenticatedPainelRoute: typeof AuthenticatedPainelRoute
+  AuthenticatedRelatoriosRoute: typeof AuthenticatedRelatoriosRoute
   AuthenticatedViagensRoute: typeof AuthenticatedViagensRoute
 }
 
@@ -240,6 +260,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedFrotaRoute: AuthenticatedFrotaRoute,
   AuthenticatedMotoristasRoute: AuthenticatedMotoristasRoute,
   AuthenticatedPainelRoute: AuthenticatedPainelRoute,
+  AuthenticatedRelatoriosRoute: AuthenticatedRelatoriosRoute,
   AuthenticatedViagensRoute: AuthenticatedViagensRoute,
 }
 
