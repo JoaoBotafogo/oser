@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AuthenticatedClientesRouteImport } from './routes/_authenticated/clientes'
+import { Route as AuthenticatedFrotaRouteImport } from './routes/_authenticated/frota'
 import { Route as AuthenticatedMotoristasRouteImport } from './routes/_authenticated/motoristas'
 import { Route as AuthenticatedPainelRouteImport } from './routes/_authenticated/painel'
 
@@ -35,6 +36,11 @@ const AuthenticatedClientesRoute = AuthenticatedClientesRouteImport.update({
   path: '/clientes',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedFrotaRoute = AuthenticatedFrotaRouteImport.update({
+  id: '/frota',
+  path: '/frota',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedMotoristasRoute = AuthenticatedMotoristasRouteImport.update({
   id: '/motoristas',
   path: '/motoristas',
@@ -50,6 +56,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/clientes': typeof AuthenticatedClientesRoute
+  '/frota': typeof AuthenticatedFrotaRoute
   '/motoristas': typeof AuthenticatedMotoristasRoute
   '/painel': typeof AuthenticatedPainelRoute
 }
@@ -57,6 +64,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/clientes': typeof AuthenticatedClientesRoute
+  '/frota': typeof AuthenticatedFrotaRoute
   '/motoristas': typeof AuthenticatedMotoristasRoute
   '/painel': typeof AuthenticatedPainelRoute
 }
@@ -66,20 +74,22 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/login': typeof LoginRoute
   '/_authenticated/clientes': typeof AuthenticatedClientesRoute
+  '/_authenticated/frota': typeof AuthenticatedFrotaRoute
   '/_authenticated/motoristas': typeof AuthenticatedMotoristasRoute
   '/_authenticated/painel': typeof AuthenticatedPainelRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/clientes' | '/motoristas' | '/painel'
+  fullPaths: '/' | '/login' | '/clientes' | '/frota' | '/motoristas' | '/painel'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/clientes' | '/motoristas' | '/painel'
+  to: '/' | '/login' | '/clientes' | '/frota' | '/motoristas' | '/painel'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/login'
     | '/_authenticated/clientes'
+    | '/_authenticated/frota'
     | '/_authenticated/motoristas'
     | '/_authenticated/painel'
   fileRoutesById: FileRoutesById
@@ -120,6 +130,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedClientesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/frota': {
+      id: '/_authenticated/frota'
+      path: '/frota'
+      fullPath: '/frota'
+      preLoaderRoute: typeof AuthenticatedFrotaRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/motoristas': {
       id: '/_authenticated/motoristas'
       path: '/motoristas'
@@ -139,12 +156,14 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedClientesRoute: typeof AuthenticatedClientesRoute
+  AuthenticatedFrotaRoute: typeof AuthenticatedFrotaRoute
   AuthenticatedMotoristasRoute: typeof AuthenticatedMotoristasRoute
   AuthenticatedPainelRoute: typeof AuthenticatedPainelRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedClientesRoute: AuthenticatedClientesRoute,
+  AuthenticatedFrotaRoute: AuthenticatedFrotaRoute,
   AuthenticatedMotoristasRoute: AuthenticatedMotoristasRoute,
   AuthenticatedPainelRoute: AuthenticatedPainelRoute,
 }
