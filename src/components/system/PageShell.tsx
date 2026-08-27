@@ -7,8 +7,8 @@ export function PageShell({
   children,
 }: {
   title: string;
-  description?: string;
-  action?: ReactNode;
+  description?: string | undefined;
+  action?: ReactNode | undefined;
   children: ReactNode;
 }) {
   return (

@@ -26,7 +26,7 @@ export type Field = {
   name: string;
   label: string;
   type?: "text" | "number" | "date" | "datetime-local" | "textarea" | "select" | "email";
-  options?: { value: string; label: string }[];
+  options?: { value: string; label: string }[] | undefined;
   required?: boolean;
   span?: boolean;
 };
@@ -55,11 +55,11 @@ export function CrudModule({
 }: {
   table: TableName;
   title: string;
-  description?: string;
+  description?: string | undefined;
   columns: Column[];
   fields: Field[];
   emptyLabel?: string;
-  orderBy?: string;
+  orderBy?: string | undefined;
 }) {
   const { data: rows = [], isLoading } = useRows(table, orderBy);
   const save = useSaveRow(table);

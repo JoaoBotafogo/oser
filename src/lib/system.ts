@@ -22,7 +22,7 @@ export function useRows(table: TableName, orderBy = "created_at", ascending = fa
 export function useSaveRow(table: TableName) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async ({ id, values }: { id?: string; values: Record<string, unknown> }) => {
+    mutationFn: async ({ id, values }: { id?: string | undefined; values: Record<string, unknown> }) => {
       if (id) {
         const { error } = await supabase.from(table).update(values as never).eq("id", id);
         if (error) throw error;
